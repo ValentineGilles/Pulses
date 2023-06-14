@@ -5,35 +5,43 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                    <!--<img src="{{ asset('images/logo_Marche_aux_pulses_negatif_monogramme.png') }}" alt="Mon Image">-->
-                        <!--<x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />-->
+                    <a href="{{ route('home') }}">
+                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Accueil') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('mesartistes')" :active="request()->routeIs('mesartistes')">
+                    <x-nav-link :href="route('myartists')" :active="request()->routeIs('myartists')">
                         {{ __('Mes artistes') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('mesproduits')" :active="request()->routeIs('mesproduits')">
+                    <x-nav-link :href="route('myproducts')" :active="request()->routeIs('myproducts')">
                         {{ __('Mes produits') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('messagerie')" :active="request()->routeIs('messagerie')">
+                    <x-nav-link :href="route('messaging')" :active="request()->routeIs('messaging')">
                         {{ __('Messagerie') }}
                     </x-nav-link>
                 </div>
                 
             </div>
+
+            <!-- Dashboard -->
+                @if (Auth::user() && Auth::user()->is_artist)
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            {{ __('Tableau de bord') }}
+                        </x-nav-link>
+                </div>
+                @endif
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -84,8 +92,8 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Acceuil') }}
+            <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                {{ __('Accueil') }}
             </x-responsive-nav-link>
         </div>
 
